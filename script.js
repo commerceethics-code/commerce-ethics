@@ -1,63 +1,53 @@
+// =============================
 // Commerce Ethics Website Script
+// =============================
 
 // Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-anchor.addEventListener("click",function(e){
-e.preventDefault();
-document.querySelector(this.getAttribute("href")).scrollIntoView({
-behavior:"smooth"
-});
-});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e){
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        if(target){
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    });
 });
 
-// Fade animation
-const cards=document.querySelectorAll(".card");
+// Service card animation
+const cards = document.querySelectorAll(".card");
 
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.style.opacity="1";
-entry.target.style.transform="translateY(0)";
-}
-});
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.style.opacity="1";
+            entry.target.style.transform="translateY(0)";
+        }
+    });
 });
 
 cards.forEach(card=>{
-card.style.opacity="0";
-card.style.transform="translateY(40px)";
-card.style.transition="0.6s";
-observer.observe(card);
+    card.style.opacity="0";
+    card.style.transform="translateY(40px)";
+    card.style.transition="0.6s ease";
+    observer.observe(card);
 });
 
-// Back to Top Button
-const btn=document.createElement("button");
+// Logo animation
+const logo = document.querySelector(".logo");
 
-btn.innerHTML="⬆";
+if(logo){
+    logo.addEventListener("mouseover",()=>{
+        logo.style.transform="scale(1.1) rotate(8deg)";
+    });
 
-btn.style.position="fixed";
-btn.style.bottom="20px";
-btn.style.right="20px";
-btn.style.padding="12px 15px";
-btn.style.border="none";
-btn.style.borderRadius="50%";
-btn.style.background="#0d47a1";
-btn.style.color="white";
-btn.style.cursor="pointer";
-btn.style.display="none";
-
-document.body.appendChild(btn);
-
-window.addEventListener("scroll",()=>{
-if(window.scrollY>300){
-btn.style.display="block";
-}else{
-btn.style.display="none";
+    logo.addEventListener("mouseout",()=>{
+        logo.style.transform="scale(1) rotate(0deg)";
+    });
 }
-});
 
-btn.onclick=()=>{
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-};
+// Back To Top Button
+const topBtn = document.create
