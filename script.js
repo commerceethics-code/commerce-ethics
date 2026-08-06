@@ -70,16 +70,19 @@ if(!topBtn){
     document.body.appendChild(topBtn);
 }
 
-// Show/hide on scroll
-window.addEventListener('scroll', ()=>{
-    if(window.pageYOffset > 300){
-        topBtn.style.display = 'block';
-    } else {
-        topBtn.style.display = 'none';
-    }
-});
+// Only attach listeners if topBtn exists
+if (topBtn) {
+    // Show/hide on scroll
+    window.addEventListener('scroll', ()=>{
+        if(window.pageYOffset > 300){
+            topBtn.style.display = 'block';
+        } else {
+            topBtn.style.display = 'none';
+        }
+    });
 
-// Smooth scroll to top when clicked
-topBtn.addEventListener('click', ()=>{
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+    // Smooth scroll to top when clicked
+    topBtn.addEventListener('click', ()=>{
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
