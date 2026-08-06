@@ -169,3 +169,16 @@ line-height:1.8;
 margin-bottom:40px;
 color:#555;
 }
+/* Services Section */
+
+#services{
+background:#f5f7fa;
+padding:70px 20px;
+}
+
+#services h2{
+text-align:center;
+font-size:38px;
+color:#003366;
+margin-bottom:40px;
+}
