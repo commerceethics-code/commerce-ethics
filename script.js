@@ -7,12 +7,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e){
         e.preventDefault();
 
-        const target = document.querySelector(this.getAttribute("href"));
+        const href = this.getAttribute("href");
 
-        if(target){
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
+        // Ignore empty/hash-only links
+        if (!href || href === '#') return;
+
+        // Only handle same-page hash links — use getElementById to avoid invalid selector errors
+        if (href.startsWith('#')) {
+            const id = decodeURIComponent(href.slice(1));
+            const target = document.getElementById(id);
+
+            if (target){
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
         }
     });
 });
