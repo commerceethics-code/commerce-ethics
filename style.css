@@ -1,171 +1,148 @@
-/* ===== Commerce Ethics Website ===== */
+/* ===== Reset ===== */
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#f5f7fa;
-    color:#333;
-    line-height:1.6;
+background:#f5f7fa;
+color:#333;
 }
 
-/* Header */
+/* ===== Navigation ===== */
 
-header{
-    background:linear-gradient(135deg,#0b5ed7,#0a3d91);
-    color:white;
-    text-align:center;
-    padding:60px 20px;
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 50px;
+background:#003366;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
-/* Logo */
+.logo-area{
+display:flex;
+align-items:center;
+}
 
 .logo{
-    width:150px;
-    height:150px;
-    object-fit:contain;
-    background:white;
-    border-radius:50%;
-    padding:12px;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
-    margin-bottom:20px;
-    transition:.3s;
+width:70px;
+height:70px;
+background:#fff;
+border-radius:50%;
+padding:6px;
+margin-right:15px;
 }
 
-.logo:hover{
-    transform:scale(1.08) rotate(5deg);
+.logo-area h2{
+color:white;
+font-size:28px;
 }
 
-/* Heading */
-
-header h1{
-    font-size:42px;
-    margin-bottom:10px;
+nav ul{
+display:flex;
+list-style:none;
 }
 
-header p{
-    font-size:20px;
-    margin-bottom:25px;
+nav ul li{
+margin-left:25px;
 }
 
-/* Buttons */
+nav ul li a{
+color:white;
+text-decoration:none;
+font-size:18px;
+font-weight:bold;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#FFD700;
+}
+
+/* ===== Hero Section ===== */
+
+#home{
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url("banner.jpg");
+background-size:cover;
+background-position:center;
+text-align:center;
+padding:120px 20px;
+color:white;
+}
+
+#home h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+#home p{
+font-size:22px;
+margin-bottom:35px;
+}
 
 .button{
-    display:inline-block;
-    background:#25D366;
-    color:white;
-    text-decoration:none;
-    padding:14px 28px;
-    margin:8px;
-    border-radius:8px;
-    font-weight:bold;
-    transition:.3s;
+display:inline-block;
+padding:14px 30px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+margin:10px;
+transition:.3s;
 }
 
 .button:hover{
-    background:#1da851;
-    transform:translateY(-3px);
+background:#1EBE5D;
+transform:translateY(-4px);
 }
 
-/* Sections */
-
-section{
-    max-width:1200px;
-    margin:auto;
-    padding:60px 20px;
-}
-
-section h2{
-    text-align:center;
-    color:#0b5ed7;
-    margin-bottom:35px;
-    font-size:34px;
-}
-
-section p{
-    text-align:center;
-    font-size:18px;
-}
-
-/* Services */
-
-.services{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-    margin-top:30px;
-}
-
-.card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 12px 30px rgba(0,0,0,.18);
-}
-
-.card h3{
-    color:#0b5ed7;
-    margin-bottom:12px;
-}
-
-.card p{
-    font-size:16px;
-    color:#555;
-}
-
-/* Footer */
-
-footer{
-    background:#0a3d91;
-    color:white;
-    text-align:center;
-    padding:30px 20px;
-}
-
-footer p{
-    margin:8px 0;
-}
-
-/* Mobile */
+/* ===== Mobile ===== */
 
 @media(max-width:768px){
 
+nav{
+flex-direction:column;
+padding:20px;
+}
+
+nav ul{
+flex-direction:column;
+margin-top:15px;
+}
+
+nav ul li{
+margin:10px 0;
+}
+
 .logo{
-    width:120px;
-    height:120px;
+width:60px;
+height:60px;
 }
 
-header h1{
-    font-size:30px;
+.logo-area h2{
+font-size:22px;
 }
 
-header p{
-    font-size:16px;
+#home h1{
+font-size:32px;
 }
 
-section h2{
-    font-size:28px;
+#home p{
+font-size:18px;
 }
 
 .button{
-    display:block;
-    width:220px;
-    margin:10px auto;
-}
-
-.services{
-    grid-template-columns:1fr;
+display:block;
+width:220px;
+margin:10px auto;
 }
 
 }
