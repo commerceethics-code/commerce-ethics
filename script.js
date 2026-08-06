@@ -1,97 +1,205 @@
-// =============================
-// Commerce Ethics Website Script
-// =============================
+/* ==========================================
+   Commerce Ethics Website
+   script.js
+   Part 1
+   ========================================== */
 
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e){
-        e.preventDefault();
+"use strict";
 
-        const href = this.getAttribute("href");
+/* ==========================================
+   DOM Ready
+========================================== */
 
-        // Ignore empty/hash-only links
-        if (!href || href === '#') return;
+document.addEventListener("DOMContentLoaded", () => {
 
-        // Only handle same-page hash links — use getElementById to avoid invalid selector errors
-        if (href.startsWith('#')) {
-            const id = decodeURIComponent(href.slice(1));
-            const target = document.getElementById(id);
+    initMobileMenu();
+    initTheme();
+    initStickyHeader();
+    initScrollTop();
+    initSmoothScroll();
+    initLoader();
 
-            if (target){
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
-        }
-    });
 });
 
-// Service card animation
-const cards = document.querySelectorAll(".card");
+/* ==========================================
+   Mobile Navigation
+========================================== */
 
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.style.opacity="1";
-            entry.target.style.transform="translateY(0)";
-        }
-    });
-});
+function initMobileMenu() {
 
-cards.forEach(card=>{
-    card.style.opacity="0";
-    card.style.transform="translateY(40px)";
-    card.style.transition="0.6s ease";
-    observer.observe(card);
-});
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
 
-// Logo animation
-const logo = document.querySelector(".logo");
+    if (!hamburger || !navMenu) return;
 
-if(logo){
-    logo.addEventListener("mouseover",()=>{
-        logo.style.transform="scale(1.1) rotate(8deg)";
+    hamburger.addEventListener("click", () => {
+
+        navMenu.classList.toggle("active");
+        hamburger.classList.toggle("active");
+
     });
 
-    logo.addEventListener("mouseout",()=>{
-        logo.style.transform="scale(1) rotate(0deg)";
+    document.querySelectorAll(".nav-menu a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+
+        });
+
     });
+
 }
 
-// Back To Top Button
-let topBtn = document.querySelector('.top-btn') || document.getElementById('topBtn');
+/* ==========================================
+   Dark Mode
+========================================== */
 
-// If there's no existing button in the markup, create one so the script is resilient.
-if(!topBtn){
-    topBtn = document.createElement('button');
-    topBtn.id = 'topBtn';
-    topBtn.className = 'top-btn';
-    topBtn.setAttribute('aria-label', 'Back to top');
-    topBtn.textContent = '↑';
-    // Basic inline styles so it appears even if the stylesheet is missing.
-    topBtn.style.position = 'fixed';
-    topBtn.style.bottom = '20px';
-    topBtn.style.right = '20px';
-    topBtn.style.display = 'none';
-    topBtn.style.padding = '10px 12px';
-    topBtn.style.borderRadius = '4px';
-    topBtn.style.cursor = 'pointer';
-    document.body.appendChild(topBtn);
+function initTheme() {
+
+    const themeBtn = document.getElementById("themeBtn");
+
+    if (!themeBtn) return;
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark");
+
+        themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+
+    }
+
+    themeBtn.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+        const dark = document.body.classList.contains("dark");
+
+        localStorage.setItem("theme", dark ? "dark" : "light");
+
+        themeBtn.innerHTML = dark
+            ? '<i class="fas fa-sun"></i>'
+            : '<i class="fas fa-moon"></i>';
+
+    });
+
 }
 
-// Only attach listeners if topBtn exists
-if (topBtn) {
-    // Show/hide on scroll
-    window.addEventListener('scroll', ()=>{
-        if(window.pageYOffset > 300){
-            topBtn.style.display = 'block';
+/* ==========================================
+   Sticky Header
+========================================== */
+
+function initStickyHeader() {
+
+    const header = document.querySelector(".header");
+
+    if (!header) return;
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 80) {
+
+            header.classList.add("sticky");
+
         } else {
-            topBtn.style.display = 'none';
+
+            header.classList.remove("sticky");
+
         }
+
     });
 
-    // Smooth scroll to top when clicked
-    topBtn.addEventListener('click', ()=>{
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ==========================================
+   Scroll To Top
+========================================== */
+
+function initScrollTop() {
+
+    const btn = document.getElementById("scrollTop");
+
+    if (!btn) return;
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 300) {
+
+            btn.classList.add("show");
+
+        } else {
+
+            btn.classList.remove("show");
+
+        }
+
     });
+
+    btn.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+
+/* ==========================================
+   Smooth Scroll
+========================================== */
+
+function initSmoothScroll() {
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+        anchor.addEventListener("click", function (e) {
+
+            const target = document.querySelector(this.getAttribute("href"));
+
+            if (!target) return;
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+    });
+
+}
+
+/* ==========================================
+   Loading Screen
+========================================== */
+
+function initLoader() {
+
+    const loader = document.querySelector(".loader");
+
+    if (!loader) return;
+
+    window.addEventListener("load", () => {
+
+        loader.classList.add("hide");
+
+        setTimeout(() => {
+
+            loader.remove();
+
+        }, 600);
+
+    });
+
 }
