@@ -146,3 +146,26 @@ margin:10px auto;
 }
 
 }
+/* ===== About Section ===== */
+
+#about{
+padding:70px 20px;
+background:#ffffff;
+}
+
+#about h2{
+text-align:center;
+font-size:38px;
+color:#003366;
+margin-bottom:20px;
+}
+
+.about-text{
+max-width:900px;
+margin:auto;
+text-align:center;
+font-size:18px;
+line-height:1.8;
+margin-bottom:40px;
+color:#555;
+}
